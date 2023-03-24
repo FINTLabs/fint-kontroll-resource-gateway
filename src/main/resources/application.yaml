@@ -1,0 +1,11 @@
+fint:
+  application-id: fint-resource-gateway
+logging:
+  level:
+    root: INFO
+    org.apache.kafka: INFO
+spring:
+  profiles:
+    include:
+      - fint-client
+      - observability

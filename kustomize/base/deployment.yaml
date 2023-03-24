@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fint-kontroll-mock-service
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fint-kontroll-mock-service
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - image: ghcr.io/fintlabs/fint-kontroll-mock-service:latest
+          name: fint-kontroll-mock-service
+          resources:
+            limits:
+              memory: "2048Mi"
+              cpu: "1"
+            requests:
+              memory: "512Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: fint-kontroll-mock-service
+
