@@ -4,8 +4,8 @@ namespace: fintlabs-no
 resources:
   - ../../../base
 commonLabels:
-  app.kubernetes.io/name: fint-kontroll-mock-service
-  app.kubernetes.io/instance: fint-kontroll-mock-service_fintlabs-no
+  app.kubernetes.io/name: fint-kontroll-resource-gateway
+  app.kubernetes.io/instance: fint-kontroll-resource-gateway_fintlabs-no
   app.kubernetes.io/version: latest
   app.kubernetes.io/component: backend
   app.kubernetes.io/part-of: fint-kontroll
