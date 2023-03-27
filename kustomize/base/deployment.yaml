@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fint-kontroll-mock-service
+  name: fint-kontroll-resource-gateway
 spec:
   replicas: 1
   strategy:
@@ -12,9 +12,16 @@ spec:
         app: fint-kontroll-resource-gateway
     spec:
       terminationGracePeriodSeconds: 60
+      volumes:
+        - name: credentials
+          secret:
+            secretName: fint-kontroll-resource-gateway-kafka-certificates
       containers:
         - image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
           name: fint-kontroll-resource-gateway
+          volumeMounts:
+            - name: credentials
+              mountPath: /credentials
           resources:
             limits:
               memory: "2048Mi"
@@ -27,4 +34,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: fint-kontroll-resource-gateway
+            - secretRef:
+                name: fint-kontroll-resource-gateway-kafka
+
 

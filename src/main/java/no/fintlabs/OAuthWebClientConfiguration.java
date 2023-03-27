@@ -3,6 +3,8 @@ package no.fintlabs;
 import io.netty.channel.ChannelOption;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.security.scram.ScramLoginModule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +31,10 @@ import java.util.function.Function;
 @Getter
 @Setter
 @Configuration
+@ConditionalOnProperty(name= "fint.kontroll.datainput", havingValue = "fint")
 @ConfigurationProperties(prefix = "fint.client")
-public class OAuthConfiguration {
+@Slf4j
+public class OAuthWebClientConfiguration {
 
     private String baseUrl;
     private String username;
@@ -43,7 +47,7 @@ public class OAuthConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "fint.resource-gateway.authorization.enable", havingValue = "true")
+    @ConditionalOnProperty(name = "fint.resource-gateway.authorization", havingValue = "enabled")
     public OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
                                                                  OAuth2AuthorizedClientService authorizedClientService) {
 
@@ -96,6 +100,8 @@ public class OAuthConfiguration {
             authorizedClientExchangeFilterFunction.setDefaultClientRegistrationId(registrationId);
             builder.filter(authorizedClientExchangeFilterFunction);
         });
+
+        log.info("oAuth webclient created");
 
         return builder
                 .clientConnector(clientHttpConnector)
