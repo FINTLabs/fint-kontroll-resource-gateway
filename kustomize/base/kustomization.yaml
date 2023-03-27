@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+  - config-map.yaml
+  - kafka-user-and-acl.yaml

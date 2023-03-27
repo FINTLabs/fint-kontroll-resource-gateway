@@ -9,12 +9,12 @@ spec:
   template:
     metadata:
       labels:
-        app: fint-kontroll-mock-service
+        app: fint-kontroll-resource-gateway
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - image: ghcr.io/fintlabs/fint-kontroll-mock-service:latest
-          name: fint-kontroll-mock-service
+        - image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
+          name: fint-kontroll-resource-gateway
           resources:
             limits:
               memory: "2048Mi"
@@ -23,8 +23,8 @@ spec:
               memory: "512Mi"
               cpu: "100m"
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
           envFrom:
             - configMapRef:
-                name: fint-kontroll-mock-service
+                name: fint-kontroll-resource-gateway
 

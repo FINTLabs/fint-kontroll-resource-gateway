@@ -1,11 +1,70 @@
 fint:
   application-id: fint-resource-gateway
+  org-id: fintlabs.no
+  resource-gateway:
+    resources:
+      entity:
+        enabled: true
+        refresh:
+          interval-ms: 518400000
+          topic-retention-time-offset-ms: 86400000
+        pull:
+          initial-delay-ms: 5000
+          fixed-delay-ms: 900000
+        entity-pipelines:
+          - resource-reference: administrasjon.personal.personalressurs
+            self-link-key-filter: ansattnummer
+          - resource-reference: administrasjon.personal.person
+            self-link-key-filter: fodselsnummer
+          - resourceReference: administrasjon.personal.arbeidsforhold
+          - resourceReference: administrasjon.organisasjon.organisasjonselement
+            self-link-key-filter: organisasjonsid
+          - resource-reference: utdanning.elev.person
+            self-link-key-filter: fodselsnummer
+          - resource-reference: utdanning.elev.elev
+          - resource-reference: utdanning.elev.elevforhold
+          - resource-reference: utdanning.utdanningsprogram.skole
+            self-link-key-filter: systemid
+    authorization:
+      enable: true
+  client:
+    base-url: http://localhost:3000
+    #base-url: https://beta.felleskomponent.no
+    registration-id: fint
+  kafka:
+    default-replicas: 1
+    topic:
+      org-id: ${fint.org-id}
+      domain-context: kontroll
+    application-id: ${fint.application-id}
 logging:
   level:
     root: INFO
     org.apache.kafka: INFO
 spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          fint-idp:
+            token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token
+        registration:
+          fint:
+            authorization-grant-type: password
+            provider: fint-idp
+            scope: fint-client
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ${fint.application-id}
   profiles:
     include:
       - fint-client
       - observability
+server:
+  port: 8089
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
