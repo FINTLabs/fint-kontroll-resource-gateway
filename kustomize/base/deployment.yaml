@@ -7,10 +7,11 @@ spec:
   strategy:
     type: Recreate
   template:
-    metadata:
-      labels:
-        app: fint-kontroll-resource-gateway
+    # metadata:
+    #   labels:
+    #     app: fint-kontroll-resource-gateway
     spec:
+      restartPolicy: Always
       terminationGracePeriodSeconds: 60
       volumes:
         - name: credentials
