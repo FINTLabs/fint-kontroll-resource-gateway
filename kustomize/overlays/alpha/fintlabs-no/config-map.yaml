@@ -9,6 +9,3 @@ data:
   fint.client.base-url: 'http://fint-kontroll-mock-service:3000'
   fint.kontroll.datainput: 'mock'
   fint.resource-gateway.authorization: 'disabled'
-  fint.flyt.resource-gateway.authorization.enable: 'true'
-  logging.level.no.fintlabs.arkiv: 'info'
-  logging.level.no.fintlabs.kafka: 'info'
