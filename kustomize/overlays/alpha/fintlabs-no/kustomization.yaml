@@ -3,8 +3,6 @@ kind: Kustomization
 namespace: fintlabs-no
 resources:
   - ../../../base
-patchesStrategicMerge:
-  - config-map.yaml
 commonLabels:
   app.kubernetes.io/name: fint-kontroll-resource-gateway
   app.kubernetes.io/instance: fint-kontroll-resource-gateway_fintlabs-no
