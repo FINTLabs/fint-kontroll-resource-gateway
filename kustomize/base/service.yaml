@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: fint-kontroll-resource-gateway
-spec:
-  ports:
-    - port: 3000
-  type: ClusterIP
