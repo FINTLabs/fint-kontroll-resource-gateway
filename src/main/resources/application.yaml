@@ -31,6 +31,7 @@ fint:
 
   client:
     base-url: http://localhost:3000
+
     #base-url: http://fint-kontroll-mock-service:3000
     #base-url: https://beta.felleskomponent.no
     registration-id: fint
