@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.4'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
     id 'groovy'
 }
@@ -39,8 +39,8 @@ dependencies {
     implementation 'no.fint:fint-model-resource:0.4.1'
     implementation("no.fint:fint-arkiv-resource-model-java:${apiVersion}")
     implementation("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
-    implementation 'no.fintlabs:fint-kafka:2.3.0'
-    //implementation files('/Users/erling/repos/fint/fint-kafka/build/libs/fint-kafka-0-SNAPSHOT.jar')
+    //implementation 'no.fintlabs:fint-kafka:2.3.0'
+    implementation files('/Users/erling/repos/fint/fint-kafka/build/libs/fint-kafka-0-SNAPSHOT.jar')
 
     //implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
