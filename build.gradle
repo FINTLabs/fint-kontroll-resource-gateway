@@ -32,21 +32,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'io.netty:netty-resolver-dns-native-macos:4.1.75.Final:osx-aarch_64'
 
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
-    //implementation 'org.springframework.security:spring-security-oauth2-resource-server'
-
-
     implementation 'no.fint:fint-model-resource:0.4.1'
     implementation("no.fint:fint-arkiv-resource-model-java:${apiVersion}")
     implementation("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
-    //implementation 'no.fintlabs:fint-kafka:2.3.0'
-    implementation files('/Users/erling/repos/fint/fint-kafka/build/libs/fint-kafka-0-SNAPSHOT.jar')
+    implementation 'no.fintlabs:fint-kafka:3.0.0-rc-1'
 
-    //implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
-
-    //implementation 'org.apache.kafka:kafka-streams'
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.apache.commons:commons-lang3:3.9'
 
@@ -61,8 +51,7 @@ dependencies {
     testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 
-    //testImplementation 'org.springframework.kafka:spring-kafka-test'
-    //testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 test {
