@@ -1,6 +1,4 @@
 fint:
-  application-id: ${fint.application-id}
-  org-id: fintlabs.no
   kontroll:
     datainput: mock #fint
   resource-gateway:
@@ -27,48 +25,16 @@ fint:
           - resource-reference: utdanning.elev.elevforhold
           - resource-reference: utdanning.utdanningsprogram.skole
             self-link-key-filter: systemid
-
-
     authorization: disabled #enabled
-
-  client:
-    base-url: http://localhost:3000
-    password: ${fint.core.oauth2.password}
-    username: ${fint.core.oauth2.username}
-
-
-    #base-url: http://fint-kontroll-mock-service:3000
-    #base-url: https://beta.felleskomponent.no
-    registration-id: fint
-  kafka:
-    topic:
-      org-id: ${fint.org-id}
-      domain-context: kontroll
-    application-id: ${fint.application-id}
-
-
 logging:
   level:
     root: INFO
     org.apache.kafka: INFO
-
 spring:
-  security:
-    oauth2:
-      client:
-        provider:
-          fint-idp:
-            token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token
-        registration:
-          fint:
-            client-secret: ${fint.core.oauth2.client-secret}
-            client-id: ${fint.core.oauth2.client-id}
-            authorization-grant-type: password
-            provider: fint-idp
-            scope: fint-client
-  kafka:
-    consumer:
-      group-id: ${fint.application-id}
+  profiles:
+    include:
+      - fint-client
+      - kafka
 
 management:
   endpoints:
