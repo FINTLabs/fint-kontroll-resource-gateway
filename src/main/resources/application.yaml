@@ -27,12 +27,7 @@ fint:
           - resource-reference: utdanning.elev.elevforhold
           - resource-reference: utdanning.utdanningsprogram.skole
             self-link-key-filter: systemid
-          - resource-reference: eiendeler.applikasjon.applikasjon
-          - resource-reference: eiendeler.applikasjon.lisens
-          - resource-reference: eiendeler.applikasjon.lisenstilgang
-          - resource-reference: eiendeler.kodeverk.brukertype
-          - resource-reference: eiendeler.kodeverk.lisensmodell
-          - resource-reference: eiendeler.kodeverk.plattform
+
 
     authorization: disabled #enabled
 

@@ -19,4 +19,23 @@ patches:
     target:
       kind: KafkaUserAndAcl
       name: fint-kontroll-resource-gateway
+  - patch: |-
+      - op: replace
+        path: "/spec/orgId"
+        value: "fintlabs.no"
+      - op: replace
+        path: "/spec/env/0/value"
+        value: "http://fint-kontroll-mock-service:3000"
+      - op: replace
+        path: "/spec/env/1/value"
+        value: "mock"
+      - op: replace
+        path: "/spec/env/2/value"
+        value: "disable"
+    target:
+      kind: Application
+      name: fint-kontroll-resource-gateway
+          
+          
 
+        
