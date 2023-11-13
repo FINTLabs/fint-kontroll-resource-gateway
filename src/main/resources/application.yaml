@@ -66,8 +66,7 @@ spring:
     bootstrap-servers: localhost:9092
     consumer:
       group-id: ${fint.application-id}
-server:
-  port: 8089
+
 management:
   endpoints:
     web:
