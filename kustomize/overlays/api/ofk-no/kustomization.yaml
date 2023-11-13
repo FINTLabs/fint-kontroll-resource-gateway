@@ -16,6 +16,9 @@ patches:
       - op: replace
         path: "/spec/acls/0/topic"
         value: "ofk-no.kontroll.*"
+      - op: replace
+        path: "/spec/acls/1/topic"
+        value: "ofk-no.kontroll.*"
     target:
       kind: KafkaUserAndAcl
       name: fint-kontroll-resource-gateway
