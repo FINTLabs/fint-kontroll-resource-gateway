@@ -35,6 +35,13 @@ patches:
     target:
       kind: Application
       name: fint-kontroll-resource-gateway
+  - patch: |-
+      - op: replace
+        path: "/spec/orgId"
+        value: "ofk.no"
+    target:
+      kind: FintClient
+      name: kontroll-resource-gw
           
           
 
