@@ -41,11 +41,12 @@ fint:
     #base-url: https://beta.felleskomponent.no
     registration-id: fint
   kafka:
-    default-replicas: 1
     topic:
       org-id: ${fint.org-id}
       domain-context: kontroll
     application-id: ${fint.application-id}
+
+
 logging:
   level:
     root: INFO
@@ -66,7 +67,6 @@ spring:
             provider: fint-idp
             scope: fint-client
   kafka:
-    bootstrap-servers: localhost:9092
     consumer:
       group-id: ${fint.application-id}
 

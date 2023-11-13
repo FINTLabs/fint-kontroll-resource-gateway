@@ -1,2 +1,6 @@
 server:
   port: 8089
+
+  bootstrap-servers: localhost:9092
+
+    default-replicas: 1
