@@ -14,16 +14,6 @@ commonLabels:
 patches:
   - patch: |-
       - op: replace
-        path: "/spec/acls/0/topic"
-        value: "ofk-no.kontroll.*"
-      - op: replace
-        path: "/spec/acls/1/topic"
-        value: "ofk-no.kontroll.*"
-    target:
-      kind: KafkaUserAndAcl
-      name: fint-kontroll-resource-gateway
-  - patch: |-
-      - op: replace
         path: "/spec/orgId"
         value: "ofk.no"
     target:
@@ -42,6 +32,12 @@ patches:
       - op: replace
         path: "/spec/env/2/value"
         value: "enabled"
+      - op: replace
+        path: "/spec/kafka/acls/0/topic"
+        value: "ofk-no.kontroll.*"
+      - op: replace
+        path: "/spec/kafka/acls/1/topic"
+        value: "ofk-no.kontroll.*"
     target:
       kind: Application
       name: fint-kontroll-resource-gateway
