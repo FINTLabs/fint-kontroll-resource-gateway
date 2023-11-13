@@ -1,5 +1,5 @@
 fint:
-  application-id: fint-resource-gateway
+  #application-id: fint-resource-gateway
   org-id: fintlabs.no
   kontroll:
     datainput: mock #fint
@@ -33,6 +33,9 @@ fint:
 
   client:
     base-url: http://localhost:3000
+    password: ${fint.core.oauth2.password}
+    username: ${fint.core.oauth2.username}
+
 
     #base-url: http://fint-kontroll-mock-service:3000
     #base-url: https://beta.felleskomponent.no
@@ -57,8 +60,8 @@ spring:
             token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token
         registration:
           fint:
-            client-secret:
-            client-id: dummy
+            client-secret: ${fint.core.oauth2.client-secret}
+            client-id: ${fint.core.oauth2.client-id}
             authorization-grant-type: password
             provider: fint-idp
             scope: fint-client
