@@ -1,0 +1,14 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: FintClient
+metadata:
+  name: kontroll-resource-gw
+
+spec:
+  orgId: fylke.no
+  components:
+    - utdanning_elev
+    - utdanning_utdanningsprogram
+    - personvern_samtykke
+    - personvern_kodeverk
+    - administrasjon_personal
+    - administrasjon_organisasjon
