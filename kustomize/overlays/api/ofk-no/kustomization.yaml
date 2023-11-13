@@ -11,6 +11,7 @@ commonLabels:
   app.kubernetes.io/part-of: fint-kontroll
   fintlabs.no/team: bas
   fintlabs.no/org-id: ofk.no
+
 patches:
   - patch: |-
       - op: replace

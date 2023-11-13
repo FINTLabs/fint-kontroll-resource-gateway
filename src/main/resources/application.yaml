@@ -1,4 +1,5 @@
 fint:
+  application-id: fint-kontroll-resource-gateway
   kontroll:
     datainput: mock #fint
   resource-gateway:
