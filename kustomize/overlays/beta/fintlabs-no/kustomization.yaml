@@ -12,13 +12,13 @@ commonLabels:
   fintlabs.no/team: bas
   fintlabs.no/org-id: fintlabs.no
 patches:
-  - patch: |-
-      - op: replace
-        path: "/spec/orgId"
-        value: "fintlabs.no"
-    target:
-      kind: FintClient
-      name: kontroll-resource-gw
+#  - patch: |-
+#      - op: replace
+#        path: "/spec/orgId"
+#        value: "fintlabs.no"
+#    target:
+#      kind: FintClient
+#      name: kontroll-resource-gw
   - patch: |-
       - op: replace
         path: "/spec/orgId"
