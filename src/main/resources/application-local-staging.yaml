@@ -1,6 +1,55 @@
+fint:
+  org-id: fintlabs.no
+  client:
+    base-url: 'http://localhost:3000'
+  kafka:
+    default-replicas: 1
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ${fint.application-id}
+  application-id: fint-kontroll-resource-gateway
+  kontroll:
+    datainput: mock #fint
+  resource-gateway:
+    resources:
+      entity:
+        enabled: true
+        refresh:
+          interval-ms: 518400000
+          topic-retention-time-offset-ms: 86400000
+        pull:
+          initial-delay-ms: 5000
+          fixed-delay-ms: 900000
+        entity-pipelines:
+          - resource-reference: administrasjon.personal.personalressurs
+            self-link-key-filter: ansattnummer
+          - resource-reference: administrasjon.personal.person
+            self-link-key-filter: fodselsnummer
+          - resourceReference: administrasjon.personal.arbeidsforhold
+          - resourceReference: administrasjon.organisasjon.organisasjonselement
+            self-link-key-filter: organisasjonsid
+          - resource-reference: utdanning.elev.person
+            self-link-key-filter: fodselsnummer
+          - resource-reference: utdanning.elev.elev
+          - resource-reference: utdanning.elev.elevforhold
+          - resource-reference: utdanning.utdanningsprogram.skole
+            self-link-key-filter: systemid
+    authorization: disabled #enabled
+logging:
+  level:
+    root: INFO
+    org.apache.kafka: INFO
+spring:
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+
+
+
 server:
   port: 8089
-
-  bootstrap-servers: localhost:9092
-
-    default-replicas: 1
