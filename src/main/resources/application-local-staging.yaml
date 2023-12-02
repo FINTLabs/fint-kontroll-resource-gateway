@@ -28,12 +28,12 @@ fint:
           - resourceReference: administrasjon.personal.arbeidsforhold
           - resourceReference: administrasjon.organisasjon.organisasjonselement
             self-link-key-filter: organisasjonsid
-          - resource-reference: utdanning.elev.person
-            self-link-key-filter: fodselsnummer
-          - resource-reference: utdanning.elev.elev
-          - resource-reference: utdanning.elev.elevforhold
-          - resource-reference: utdanning.utdanningsprogram.skole
-            self-link-key-filter: systemid
+#          - resource-reference: utdanning.elev.person
+#            self-link-key-filter: fodselsnummer
+#          - resource-reference: utdanning.elev.elev
+#          - resource-reference: utdanning.elev.elevforhold
+#          - resource-reference: utdanning.utdanningsprogram.skole
+#            self-link-key-filter: systemid
     authorization: disabled #enabled
 logging:
   level:
