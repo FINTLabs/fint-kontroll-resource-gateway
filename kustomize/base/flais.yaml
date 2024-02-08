@@ -16,6 +16,7 @@ spec:
       value: 'disabled'
     - name: spring.kafka.consumer.group-id
       value: 'fint-kontroll-resource-gateway'
+
   envFrom:
     - secretRef:
         name: kontroll-resource-gw

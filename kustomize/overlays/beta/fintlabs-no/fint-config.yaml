@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fint-kontroll-devenv-config
+data:
+  # Set correct url for OPA
+  fint.resource-gateway.resources.entity.entity-pipelines:  |
+    - resource-reference: administrasjon.personal.personalressurs
+      self-link-key-filter: ansattnummer
+    - resource-reference: administrasjon.personal.person
+      self-link-key-filter: fodselsnummer
+    - resourceReference: administrasjon.personal.arbeidsforhold
+    - resourceReference: administrasjon.organisasjon.organisasjonselement
+      self-link-key-filter: organisasjonsid
+    - resource-reference: utdanning.elev.person
+      self-link-key-filter: fodselsnummer
+    - resource-reference: utdanning.elev.elev
+    - resource-reference: utdanning.elev.elevforhold
+    - resource-reference: utdanning.utdanningsprogram.skole
+      self-link-key-filter: systemid
