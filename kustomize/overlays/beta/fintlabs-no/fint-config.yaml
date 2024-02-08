@@ -4,13 +4,13 @@ metadata:
   name: fint-kontroll-devenv-config
 data:
   # resourses to be imported from FINT. Only for dev env.
-  fint.resource-gateway.resources.entity.entity-pipelines:  |
+  fint.resource-gateway.resources.entity.entity-pipelines: | 
     - resource-reference: administrasjon.personal.personalressurs
       self-link-key-filter: ansattnummer
     - resource-reference: administrasjon.personal.person
       self-link-key-filter: fodselsnummer
-    - resourceReference: administrasjon.personal.arbeidsforhold
-    - resourceReference: administrasjon.organisasjon.organisasjonselement
+    - resource-Reference: administrasjon.personal.arbeidsforhold
+    - resource-Reference: administrasjon.organisasjon.organisasjonselement
       self-link-key-filter: organisasjonsid
     - resource-reference: utdanning.elev.person
       self-link-key-filter: fodselsnummer
