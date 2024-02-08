@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: fint-kontroll-devenv-config
 data:
-  # Set correct url for OPA
+  # resourses to be imported from FINT. Only for dev env.
   fint.resource-gateway.resources.entity.entity-pipelines:  |
     - resource-reference: administrasjon.personal.personalressurs
       self-link-key-filter: ansattnummer
