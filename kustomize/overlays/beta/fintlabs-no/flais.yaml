@@ -14,24 +14,58 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
-    - name: fint.resource-gateway.resources.entity.entity-pipelines
-      value:
-        - resource-reference: administrasjon.personal.personalressurs
-          self-link-key-filter: ansattnummer
-        - resource-reference: administrasjon.personal.person
-          self-link-key-filter: fodselsnummer
-        - resource-reference: administrasjon.personal.arbeidsforhold
-          self-link-key-filter: systemid
-        - resource-reference: administrasjon.organisasjon.organisasjonselement
-          self-link-key-filter: organisasjonsid
-        - resource-reference: utdanning.elev.person
-          self-link-key-filter: fodselsnummer
-        - resource-reference: utdanning.elev.elev
-          self-link-key-filter: systemid
-        - resource-reference: utdanning.elev.elevforhold
-          self-link-key-filter: systemid
-        - resource-reference: utdanning.utdanningsprogram.skole
-          self-link-key-filter: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_RESOURCE_REFERENCE
+      value: administrasjon.personal.personalressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_SELF_LINK_KEY_FILTER
+      value: ansattnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_RESOURCE_REFERENCE
+      value: administrasjon.personal.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_SELF_LINK_KEY_FILTER
+      value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_RESOURCE_REFERENCE
+      value: administrasjon.personal.arbeidsforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_RESOURCE_REFERENCE
+      value: administrasjon.organisasjon.organisasjonselement
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_SELF_LINK_KEY_FILTER
+      value: organisasjonsid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_RESOURCE_REFERENCE
+      value: utdanning.elev.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_SELF_LINK_KEY_FILTER
+      value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_RESOURCE_REFERENCE
+      value: utdanning.elev.elev
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_RESOURCE_REFERENCE
+      value: utdanning.elev.elevforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_RESOURCE_REFERENCE
+      value: utdanning.utdanningsprogram.skole
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_SELF_LINK_KEY_FILTER
+      value: systemid
+
+
+#    - name: fint.resource-gateway.resources.entity.entity-pipelines
+#      value:
+#        - resource-reference: administrasjon.personal.personalressurs
+#          self-link-key-filter: ansattnummer
+#        - resource-reference: administrasjon.personal.person
+#          self-link-key-filter: fodselsnummer
+#        - resource-reference: administrasjon.personal.arbeidsforhold
+#          self-link-key-filter: systemid
+#        - resource-reference: administrasjon.organisasjon.organisasjonselement
+#          self-link-key-filter: organisasjonsid
+#        - resource-reference: utdanning.elev.person
+#          self-link-key-filter: fodselsnummer
+#        - resource-reference: utdanning.elev.elev
+#          self-link-key-filter: systemid
+#        - resource-reference: utdanning.elev.elevforhold
+#          self-link-key-filter: systemid
+#        - resource-reference: utdanning.utdanningsprogram.skole
+#          self-link-key-filter: systemid
   kafka:
     enabled: true
     acls:
@@ -39,7 +73,6 @@ spec:
         permission: read
       - topic: 'fintlabs-no.kontroll.*'
         permission: admin
-
 
 
 #  envFrom:
