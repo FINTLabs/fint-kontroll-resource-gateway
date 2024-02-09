@@ -14,7 +14,6 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
-    - name:
     - name: fint.resource-gateway.resources.entity.entity-pipelines
       value:
         - resource-reference: administrasjon.personal.personalressurs
@@ -48,5 +47,4 @@ spec:
 #        name: fint-environment
 #    - configMapRef:
 #        name: fint-kontroll-resourcegateway-config
-
 
