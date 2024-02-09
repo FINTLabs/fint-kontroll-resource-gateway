@@ -21,5 +21,10 @@ spec:
         permission: read
       - topic: 'fintlabs-no.kontroll.*'
         permission: admin
+  envFrom:
+    - configMapRef:
+        name: fint-environment
+    - configMapRef:
+        name: fint-kontroll-resourcegateway-config
 
 
