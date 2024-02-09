@@ -3,24 +3,24 @@ kind: ConfigMap
 metadata:
   name: fint-kontroll-resourcegateway-config
 data:
-  fint.resource-gateway.resources.entity.entity-pipelines: |
-    - resource-reference: administrasjon.personal.personalressurs
-      self-link-key-filter: ansattnummer
-    - resource-reference: administrasjon.personal.person
-      self-link-key-filter: fodselsnummer
-    - resource-reference: administrasjon.personal.arbeidsforhold
-      self-link-key-filter: systemid
-    - resource-reference: administrasjon.organisasjon.organisasjonselement
-      self-link-key-filter: organisasjonsid
-    - resource-reference: utdanning.elev.person
-      self-link-key-filter: fodselsnummer
-    - resource-reference: utdanning.elev.elev
-      self-link-key-filter: systemid
-    - resource-reference: utdanning.elev.elevforhold
-      self-link-key-filter: systemid
-    - resource-reference: utdanning.utdanningsprogram.skole
-      self-link-key-filter: systemid
-
+  fint.resource-gateway.resources.entity:
+    entity-pipelines: |
+      - resource-reference: administrasjon.personal.personalressurs
+        self-link-key-filter: ansattnummer
+      - resource-reference: administrasjon.personal.person
+        self-link-key-filter: fodselsnummer
+      - resource-reference: administrasjon.personal.arbeidsforhold
+        self-link-key-filter: systemid
+      - resource-reference: administrasjon.organisasjon.organisasjonselement
+        self-link-key-filter: organisasjonsid
+      - resource-reference: utdanning.elev.person
+        self-link-key-filter: fodselsnummer
+      - resource-reference: utdanning.elev.elev
+        self-link-key-filter: systemid
+      - resource-reference: utdanning.elev.elevforhold
+        self-link-key-filter: systemid
+      - resource-reference: utdanning.utdanningsprogram.skole
+        self-link-key-filter: systemid
 
 
 
