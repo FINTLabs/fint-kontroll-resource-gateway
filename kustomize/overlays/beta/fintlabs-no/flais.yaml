@@ -14,7 +14,7 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
-    - name: fint.resource-gateway.resources.entity.entity-pipelines
+    - name: fint.resource-gateway.resources.entity
       value: |
         - resource-reference: administrasjon.personal.personalressurs
           self-link-key-filter: ansattnummer
