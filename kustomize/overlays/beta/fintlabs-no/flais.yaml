@@ -14,7 +14,6 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
-    - name: fint.resource-gateway.resources.entity.entity-pipelines
   kafka:
     enabled: true
     acls:
