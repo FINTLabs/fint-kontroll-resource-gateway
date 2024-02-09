@@ -14,8 +14,9 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
+    - name:
     - name: fint.resource-gateway.resources.entity.entity-pipelines
-      value: |
+      value:
         - resource-reference: administrasjon.personal.personalressurs
           self-link-key-filter: ansattnummer
         - resource-reference: administrasjon.personal.person
@@ -39,6 +40,9 @@ spec:
         permission: read
       - topic: 'fintlabs-no.kontroll.*'
         permission: admin
+
+
+
 #  envFrom:
 #    - configMapRef:
 #        name: fint-environment
