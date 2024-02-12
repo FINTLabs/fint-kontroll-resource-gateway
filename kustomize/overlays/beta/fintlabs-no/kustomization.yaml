@@ -12,5 +12,5 @@ namespace: fintlabs-no
 
 resources:
   - flais.yaml
-  #- fint-config.yaml
+
 
