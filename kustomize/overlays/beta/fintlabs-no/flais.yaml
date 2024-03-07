@@ -50,6 +50,14 @@ spec:
       value: utdanning.elev.skoleressurs
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_RESOURCE_REFERENCE
+      value: utdanning.timeplan.undervisningsgruppe
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_RESOURCE_REFERENCE
+      value: utdanning.elev.undervisningsgruppemedlemskap
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_SELF_LINK_KEY_FILTER
+      value: systemid
 
 
   kafka:
