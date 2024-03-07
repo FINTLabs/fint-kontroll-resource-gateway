@@ -46,6 +46,11 @@ spec:
       value: utdanning.utdanningsprogram.skole
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_RESOURCE_REFERENCE
+      value: utdanning.elev.skoleressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_SELF_LINK_KEY_FILTER
+      value: systemid
+
 
   kafka:
     enabled: true
