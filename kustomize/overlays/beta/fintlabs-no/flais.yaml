@@ -55,7 +55,7 @@ spec:
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_SELF_LINK_KEY_FILTER
       value: systemid
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_RESOURCE_REFERENCE
-      value: utdanning.elev.undervisningsgruppemedlemskap
+      value: utdanning.timeplan.undervisningsgruppemedlemskap
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_SELF_LINK_KEY_FILTER
       value: systemid
 
