@@ -8,6 +8,7 @@ spec:
   components:
     - utdanning_elev
     - utdanning_utdanningsprogram
+    - utdanning_timeplan
     - personvern_samtykke
     - personvern_kodeverk
     - administrasjon_personal

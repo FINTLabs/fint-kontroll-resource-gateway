@@ -21,6 +21,15 @@ patches:
       kind: FintClient
       name: kontroll-resource-gw
   - patch: |-
+      - op: add
+        path: "/spec/resources"
+        value:
+          limits:
+            cpu: "1500m"
+            memory: "1000Mi"
+          requests:
+            cpu: "500m"
+            memory: "1000Mi"
       - op: replace
         path: "/spec/orgId"
         value: "afk.no"
