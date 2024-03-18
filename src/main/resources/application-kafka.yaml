@@ -4,7 +4,14 @@ fint:
       org-id: ${fint.org-id}
       domain-context: kontroll
     application-id: ${fint.application-id}
+    producer-max-message-size: 3145728
+    consumer-max-message-size: 5242880
+    consumer-partition-fetch-bytes: 3145728
 spring:
   kafka:
     consumer:
       group-id: ${fint.application-id}
+    producer:
+      max:
+        request:
+          size: 2097152
