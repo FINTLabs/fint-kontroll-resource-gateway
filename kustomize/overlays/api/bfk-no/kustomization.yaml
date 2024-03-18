@@ -29,7 +29,7 @@ patches:
         value:
           limits:
             cpu: "1000m"
-            memory: "2000Mi"
+            memory: "4000Mi"
           requests:
             cpu: "500m"
             memory: "1000Mi"
