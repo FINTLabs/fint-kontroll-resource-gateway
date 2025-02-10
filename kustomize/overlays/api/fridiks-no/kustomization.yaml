@@ -2,7 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: fridiks-no
 resources:
-  - ../../../base
+  - flais.yaml
+  - fint-client.yaml
 commonLabels:
   app.kubernetes.io/name: fint-kontroll-resource-gateway
   app.kubernetes.io/instance: fint-kontroll-resource-gateway_fridiks-no
@@ -51,6 +52,7 @@ patches:
       - op: replace
         path: "/spec/kafka/acls/1/topic"
         value: "fridiks-no.kontroll.*"
+
     target:
       kind: Application
       name: fint-kontroll-resource-gateway

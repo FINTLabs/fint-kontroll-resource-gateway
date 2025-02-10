@@ -1,0 +1,10 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: FintClient
+metadata:
+  name: kontroll-resource-gw
+
+spec:
+  orgId: placeholder.com
+  components:
+    - administrasjon_personal
+    - administrasjon_organisasjon
