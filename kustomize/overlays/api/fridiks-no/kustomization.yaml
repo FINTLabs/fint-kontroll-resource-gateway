@@ -5,25 +5,25 @@ resources:
   - ../../../base
 commonLabels:
   app.kubernetes.io/name: fint-kontroll-resource-gateway
-  app.kubernetes.io/instance: fint-kontroll-resource-gateway_frid-iks-no
+  app.kubernetes.io/instance: fint-kontroll-resource-gateway_fridiks-no
   app.kubernetes.io/version: latest
   app.kubernetes.io/component: backend
   app.kubernetes.io/part-of: fint-kontroll
   fintlabs.no/team: bas
-  fintlabs.no/org-id: frid-iks.no
+  fintlabs.no/org-id: fridiks.no
 
 patches:
   - patch: |-
       - op: replace
         path: "/spec/orgId"
-        value: "frid-iks.no"
+        value: "fridiks.no"
     target:
       kind: FintClient
       name: kontroll-resource-gw
   - patch: |-
       - op: replace
         path: "/spec/orgId"
-        value: "frid-iks.no"
+        value: "fridiks.no"
       - op: add
         path: "/spec/resources"
         value:
@@ -44,13 +44,13 @@ patches:
         value: "enabled"
       - op: replace
         path: "/spec/env/3/value"
-        value: "frid-iks-no-fint-kontroll-resource-gateway"
+        value: "fridiks-no-fint-kontroll-resource-gateway"
       - op: replace
         path: "/spec/kafka/acls/0/topic"
-        value: "frid-iks-no.kontroll.*"
+        value: "fridiks-no.kontroll.*"
       - op: replace
         path: "/spec/kafka/acls/1/topic"
-        value: "frid-iks-no.kontroll.*"
+        value: "fridiks-no.kontroll.*"
     target:
       kind: Application
       name: fint-kontroll-resource-gateway
