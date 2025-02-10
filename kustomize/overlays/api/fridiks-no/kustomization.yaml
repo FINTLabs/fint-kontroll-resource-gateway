@@ -51,6 +51,20 @@ patches:
       - op: replace
         path: "/spec/kafka/acls/1/topic"
         value: "fridiks-no.kontroll.*"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/4"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/5"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/6"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/7"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/8"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/9"
+      - op: remove
+        path: "/spec/config/application.yaml/entity-pipelines/10"
     target:
       kind: Application
       name: fint-kontroll-resource-gateway
