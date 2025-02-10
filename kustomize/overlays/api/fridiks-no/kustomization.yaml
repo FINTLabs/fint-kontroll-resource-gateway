@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: fridiks-no
 resources:
   - flais.yaml
-  - ../../../base/fint-client.yaml
+  - fint-client.yaml
 commonLabels:
   app.kubernetes.io/name: fint-kontroll-resource-gateway
   app.kubernetes.io/instance: fint-kontroll-resource-gateway_fridiks-no
