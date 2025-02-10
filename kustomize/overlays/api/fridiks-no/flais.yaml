@@ -33,6 +33,10 @@ spec:
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_SELF_LINK_KEY_FILTER
       value: organisasjonsid
 
+  envFrom:
+    - secretRef:
+        name: kontroll-resource-gw
+
 
   kafka:
     enabled: true
