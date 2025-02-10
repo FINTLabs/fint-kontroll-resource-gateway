@@ -1,0 +1,41 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fint-kontroll-resource-gateway
+  namespace: fridiks-no
+spec:
+  orgId: fridiks.no
+  image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
+  imagePullPolicy: Always
+  env:
+    - name: fint.client.base-url
+      value: 'https://api.felleskomponenent.no'
+    - name: fint.kontroll.datainput
+      value: 'fint'
+    - name: fint.resource-gateway.authorization
+      value: 'enabled'
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_RESOURCE_REFERENCE
+      value: administrasjon.personal.personalressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_SELF_LINK_KEY_FILTER
+      value: ansattnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_RESOURCE_REFERENCE
+      value: administrasjon.personal.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_SELF_LINK_KEY_FILTER
+      value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_RESOURCE_REFERENCE
+      value: administrasjon.personal.arbeidsforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_RESOURCE_REFERENCE
+      value: administrasjon.organisasjon.organisasjonselement
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_SELF_LINK_KEY_FILTER
+      value: organisasjonsid
+
+
+  kafka:
+    enabled: true
+    acls:
+      - topic: 'fridiks-no.kontroll.*'
+        permission: read
+      - topic: 'fridiks-no.kontroll.*'
+        permission: admin
