@@ -1,0 +1,63 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fint-kontroll-resource-gateway
+  namespace: fridiks-no
+spec:
+  orgId: fridiks.no
+  image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
+  imagePullPolicy: Always
+  env:
+    - name: fint.client.base-url
+      value: 'https://api.felleskomponent.no'
+    - name: fint.kontroll.datainput
+      value: 'fint'
+    - name: fint.resource-gateway.authorization
+      value: 'enabled'
+    - name: spring.kafka.consumer.group-id
+      value: 'fint-kontroll-resource-gateway'
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_RESOURCE_REFERENCE
+    - value: utdanning.elev.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_SELF_LINK_KEY_FILTER
+    - value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_RESOURCE_REFERENCE
+    - value: utdanning.elev.elev
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_SELF_LINK_KEY_FILTER
+    - value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_RESOURCE_REFERENCE
+    - value: utdanning.elev.elevforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_SELF_LINK_KEY_FILTER
+    - value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_RESOURCE_REFERENCE
+    - value: utdanning.utdanningsprogram.skole
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_SELF_LINK_KEY_FILTER
+    - value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_RESOURCE_REFERENCE
+    - value: utdanning.elev.skoleressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_SELF_LINK_KEY_FILTER
+    - value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_RESOURCE_REFERENCE
+    - value: utdanning.timeplan.undervisningsgruppe
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_SELF_LINK_KEY_FILTER
+    - value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_RESOURCE_REFERENCE
+    - value: utdanning.timeplan.undervisningsgruppemedlemskap
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_SELF_LINK_KEY_FILTER
+    - value: systemid
+
+  envFrom:
+    - secretRef:
+        name: kontroll-resource-gw
+  kafka:
+    enabled: true
+    acls:
+      - topic: 'fridiks-no.kontroll.*'
+        permission: read
+      - topic: 'fridiks-no.kontroll.*'
+        permission: admin
+
+
+
+
+
+
