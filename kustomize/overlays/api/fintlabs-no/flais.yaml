@@ -1,0 +1,69 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fint-kontroll-resource-gateway
+  namespace: fintlabs-no
+spec:
+  orgId: fintlabs.no
+  image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
+  imagePullPolicy: Always
+  env:
+    - name: fint.client.base-url
+      value: 'http://fint-kontroll-mock-service:3000'
+    - name: fint.kontroll.datainput
+      value: 'mock'
+    - name: fint.resource-gateway.authorization
+      value: 'disabled'
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_RESOURCE_REFERENCE
+      value: administrasjon.personal.personalressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_SELF_LINK_KEY_FILTER
+      value: ansattnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_RESOURCE_REFERENCE
+      value: administrasjon.personal.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_1_SELF_LINK_KEY_FILTER
+      value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_RESOURCE_REFERENCE
+      value: administrasjon.personal.arbeidsforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_2_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_RESOURCE_REFERENCE
+      value: administrasjon.organisasjon.organisasjonselement
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_3_SELF_LINK_KEY_FILTER
+      value: organisasjonsid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_RESOURCE_REFERENCE
+      value: utdanning.elev.person
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_4_SELF_LINK_KEY_FILTER
+      value: fodselsnummer
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_RESOURCE_REFERENCE
+      value: utdanning.elev.elev
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_5_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_RESOURCE_REFERENCE
+      value: utdanning.elev.elevforhold
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_6_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_RESOURCE_REFERENCE
+      value: utdanning.utdanningsprogram.skole
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_7_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_RESOURCE_REFERENCE
+      value: utdanning.elev.skoleressurs
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_8_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_RESOURCE_REFERENCE
+      value: utdanning.timeplan.undervisningsgruppe
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_9_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_RESOURCE_REFERENCE
+      value: utdanning.timeplan.undervisningsgruppemedlemskap
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_SELF_LINK_KEY_FILTER
+      value: systemid
+
+
+  kafka:
+    enabled: true
+    acls:
+      - topic: 'fintlabs-no.kontroll.*'
+        permission: read
+      - topic: 'fintlabs-no.kontroll.*'
+        permission: admin
