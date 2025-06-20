@@ -14,6 +14,8 @@ spec:
       value: 'mock'
     - name: fint.resource-gateway.authorization
       value: 'disabled'
+    - name: fint.kafka.topic.org-id
+      value: "fintlabs-no"
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_RESOURCE_REFERENCE
       value: administrasjon.personal.personalressurs
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_0_SELF_LINK_KEY_FILTER
