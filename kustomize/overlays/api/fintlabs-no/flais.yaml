@@ -4,7 +4,7 @@ metadata:
   name: fint-kontroll-resource-gateway
   namespace: fintlabs-no
 spec:
-  orgId: fintlabs.no
+  orgId: vigo.no
   image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
   imagePullPolicy: Always
   env:
