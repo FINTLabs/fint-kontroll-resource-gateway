@@ -47,6 +47,7 @@ fint:
           - resource-reference: eiendeler.kodeverk.lisensmodell
           - resource-reference: eiendeler.kodeverk.applikasjonskategori
           - resource-reference: ressurs.kodeverk.plattform
+          - resource-reference: ressurs.kodeverk.status
           - resource-reference: ressurs.kodeverk.enhetstype
           - resource-reference: ressurs.datautstyr.digitalenhet
           - resource-reference: ressurs.datautstyr.enhetsgruppe
