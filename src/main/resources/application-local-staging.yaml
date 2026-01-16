@@ -46,7 +46,11 @@ fint:
           - resource-reference: eiendeler.kodeverk.brukertype
           - resource-reference: eiendeler.kodeverk.lisensmodell
           - resource-reference: eiendeler.kodeverk.applikasjonskategori
-          - resource-reference: eiendeler.kodeverk.plattform
+          - resource-reference: ressurs.kodeverk.plattform
+          - resource-reference: ressurs.kodeverk.enhetstype
+          - resource-reference: ressurs.datautstyr.digitalenhet
+          - resource-reference: ressurs.datautstyr.enhetsgruppe
+          - resource-reference: ressurs.datautstyr.enhetsgruppemedlemskap
 
 
     authorization: disabled #enabled

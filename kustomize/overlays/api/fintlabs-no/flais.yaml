@@ -58,6 +58,19 @@ spec:
       value: utdanning.timeplan.undervisningsgruppemedlemskap
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_10_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_11_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.digitalenhet
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_11_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_12_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.enhetsgruppe
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_12_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_13_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.enhetsgruppemedlemskap
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_13_SELF_LINK_KEY_FILTER
+      value: systemid
+
 
 
   kafka:

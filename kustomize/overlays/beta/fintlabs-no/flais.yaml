@@ -86,6 +86,18 @@ spec:
       value: eiendeler.kodeverk.plattform
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_17_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_18_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.digitalenhet
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_18_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_19_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.enhetsgruppe
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_19_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_20_RESOURCE_REFERENCE
+      value: ressurs.datautstyr.enhetsgruppemedlemskap
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_20_SELF_LINK_KEY_FILTER
+      value: systemid
 
   kafka:
     enabled: true
