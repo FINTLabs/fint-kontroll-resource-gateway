@@ -102,6 +102,14 @@ spec:
       value: ressurs.kodeverk.status
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_21_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_22_RESOURCE_REFERENCE
+      value: utdanning.kodeverk.skolear
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_22_SELF_LINK_KEY_FILTER
+      value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_23_RESOURCE_REFERENCE
+      value: utdanning.kodeverk.termin
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_23_SELF_LINK_KEY_FILTER
+      value: systemid
 
   kafka:
     enabled: true
