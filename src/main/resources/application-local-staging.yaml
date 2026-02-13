@@ -40,6 +40,8 @@ fint:
             self-link-key-filter: systemid
           - resource-reference: utdanning.timeplan.undervisningsgruppemedlemskap
             self-link-key-filter: systemid
+          - resource-reference: utdanning.kodeverk.termin
+          - resource-reference: utdanning.kodeverk.skolear
           - resource-reference: eiendeler.applikasjon.applikasjon
           - resource-reference: eiendeler.applikasjon.lisens
           - resource-reference: eiendeler.applikasjon.lisenstilgang
