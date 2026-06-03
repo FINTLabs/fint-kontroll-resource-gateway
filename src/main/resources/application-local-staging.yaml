@@ -2,11 +2,6 @@ fint:
   org-id: fintlabs.no
   client:
     base-url: 'http://localhost:3000'
-  kafka:
-    default-replicas: 1
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: ${fint.application-id}
   application-id: fint-kontroll-resource-gateway
   kontroll:
     datainput: mock #fint
@@ -53,6 +48,13 @@ fint:
           - resource-reference: ressurs.datautstyr.enhetsgruppe
           - resource-reference: ressurs.datautstyr.enhetsgruppemedlemskap
 
+novari:
+  kafka:
+    default-replicas: 1
+    topic:
+      org-id: fintlabs-no
+      domain-context: kontroll
+    application-id: ${fint.application-id}
 
     authorization: disabled #enabled
 logging:
