@@ -7,6 +7,15 @@ fint:
     producer-max-message-size: 3145728
     consumer-max-message-size: 5242880
     consumer-partition-fetch-bytes: 3145728
+
+novari:
+  kafka:
+    default-replicas: 1
+    topic:
+      org-id: fintlabs-no
+      domain-context: kontroll
+    application-id: ${fint.application-id}
+
 spring:
   kafka:
     consumer:

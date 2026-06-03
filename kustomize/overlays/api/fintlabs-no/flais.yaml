@@ -8,6 +8,8 @@ spec:
   image: ghcr.io/fintlabs/fint-kontroll-resource-gateway:latest
   imagePullPolicy: Always
   env:
+    - name: novari.kafka.topic.org-id
+      value: "fintlabs-no"
     - name: fint.client.base-url
       value: 'http://fint-kontroll-mock-service:3000'
     - name: fint.kontroll.datainput
