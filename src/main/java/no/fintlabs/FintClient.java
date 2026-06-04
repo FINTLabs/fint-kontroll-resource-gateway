@@ -2,59 +2,57 @@ package no.fintlabs;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+import org.springframework.web.client.RestClient;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Component
 public class FintClient {
-    private final WebClient webClient;
+    private final RestClient restClient;
 
     private final Map<String, Long> sinceTimestamp = new ConcurrentHashMap<>();
 
-    public FintClient(WebClient webClient) {
-        this.webClient = webClient;
+    public FintClient(RestClient restClient) {
+        this.restClient = restClient;
     }
 
-    public Mono<List<Object>> getResourcesLastUpdated(String endpoint) {
-        return getLastUpdated(endpoint)
-                .flatMapIterable(ObjectResources::getContent)
-                .collect(Collectors.toList());
+    public List<Object> getResourcesLastUpdated(String endpoint) {
+        return getLastUpdated(endpoint).getContent();
     }
 
     public void resetLastUpdatedTimestamps() {
         this.sinceTimestamp.clear();
     }
 
-    private Mono<ObjectResources> getLastUpdated(String endpoint) {
-        return webClient.get()
+    private ObjectResources getLastUpdated(String endpoint) {
+        LastUpdated lastUpdated = restClient.get()
                 .uri(endpoint.concat("/last-updated"))
                 .retrieve()
-                .bodyToMono(LastUpdated.class)
-                .flatMap(lastUpdated -> webClient.get()
-                        .uri(endpoint, uriBuilder -> uriBuilder.queryParam("sinceTimeStamp", sinceTimestamp.getOrDefault(endpoint, 0L)).build())
-                        .retrieve()
-                        .bodyToMono(ObjectResources.class)
-                        .doOnNext(it -> sinceTimestamp.put(endpoint, lastUpdated.getLastUpdated()))
-                );
+                .body(LastUpdated.class);
+
+        ObjectResources objectResources = restClient.get()
+                .uri(endpoint, uriBuilder -> uriBuilder.queryParam("sinceTimeStamp", sinceTimestamp.getOrDefault(endpoint, 0L)).build())
+                .retrieve()
+                .body(ObjectResources.class);
+
+        sinceTimestamp.put(endpoint, lastUpdated.getLastUpdated());
+        return objectResources;
     }
 
-    public Mono<Object> getResource(String endpoint) {
-        return webClient.get()
+    public Object getResource(String endpoint) {
+        return restClient.get()
                 .uri(endpoint)
                 .retrieve()
-                .bodyToMono(Object.class);
+                .body(Object.class);
     }
 
-    public <T> Mono<T> getResource(String endpoint, Class<T> clazz) {
-        return webClient.get()
+    public <T> T getResource(String endpoint, Class<T> clazz) {
+        return restClient.get()
                 .uri(endpoint)
                 .retrieve()
-                .bodyToMono(clazz);
+                .body(clazz);
     }
 
     @Data

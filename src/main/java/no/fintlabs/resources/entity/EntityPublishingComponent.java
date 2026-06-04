@@ -13,7 +13,7 @@ import no.fintlabs.resources.entity.properties.EntityPipelineConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClientException;
+import org.springframework.web.client.RestClientException;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -98,11 +98,11 @@ public class EntityPublishingComponent {
 
     private List<HashMap<String, Object>> getUpdatedResources(String endpointUrl) {
         try {
-            return Objects.requireNonNull(fintClient.getResourcesLastUpdated(endpointUrl).block())
+            return Objects.requireNonNull(fintClient.getResourcesLastUpdated(endpointUrl))
                     .stream()
                     .map(r -> ((HashMap<String, Object>) r))
                     .collect(Collectors.toList());
-        } catch (WebClientException e) {
+        } catch (RestClientException e) {
             log.error("Could not pull entities from endpoint=" + endpointUrl, e);
             return Collections.emptyList();
         }
