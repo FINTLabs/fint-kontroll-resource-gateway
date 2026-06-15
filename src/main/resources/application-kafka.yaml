@@ -10,7 +10,4 @@ spring:
   kafka:
     consumer:
       group-id: ${fint.application-id}
-    producer:
-      max:
-        request:
-          size: 2097152
+
