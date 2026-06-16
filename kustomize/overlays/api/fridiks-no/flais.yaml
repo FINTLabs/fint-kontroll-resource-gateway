@@ -40,7 +40,6 @@ spec:
         name: kontroll-resource-gw
 
 
-
   kafka:
     enabled: true
     acls:
