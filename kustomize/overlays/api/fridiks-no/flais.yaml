@@ -11,7 +11,7 @@ spec:
     - name: novari.kafka.topic.org-id
       value: "fridiks-no"
     - name: fint.client.base-url
-      value: 'https://api.felleskomponenent.no'
+      value: 'https://api.felleskomponent.no'
     - name: fint.kontroll.datainput
       value: 'fint'
     - name: fint.resource-gateway.authorization
