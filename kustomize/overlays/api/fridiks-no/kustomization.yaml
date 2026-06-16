@@ -18,13 +18,6 @@ patches:
       - op: replace
         path: "/spec/orgId"
         value: "fridiks.no"
-    target:
-      kind: FintClient
-      name: kontroll-resource-gw
-  - patch: |-
-      - op: replace
-        path: "/spec/orgId"
-        value: "fridiks.no"
       - op: add
         path: "/spec/resources"
         value:
