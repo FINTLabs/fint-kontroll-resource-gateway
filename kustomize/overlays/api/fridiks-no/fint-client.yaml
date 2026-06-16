@@ -4,7 +4,7 @@ metadata:
   name: kontroll-resource-gw
 
 spec:
-  orgId: placeholder.com
+  orgId: fridiks-no
   components:
     - administrasjon_personal
     - administrasjon_organisasjon
