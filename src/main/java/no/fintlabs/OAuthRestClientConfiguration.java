@@ -1,26 +1,22 @@
 package no.fintlabs;
 
-import io.netty.channel.ChannelOption;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.security.scram.ScramLoginModule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.reactive.ClientHttpConnector;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.*;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.netty.http.client.HttpClient;
-import reactor.netty.resources.ConnectionProvider;
+import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor;
+import org.springframework.web.client.RestClient;
 
+import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,7 +30,7 @@ import java.util.function.Function;
 @ConditionalOnProperty(name= "fint.kontroll.datainput", havingValue = "fint")
 @ConfigurationProperties(prefix = "fint.client")
 @Slf4j
-public class OAuthWebClientConfiguration {
+public class OAuthRestClientConfiguration {
 
     private String baseUrl;
     private String username;
@@ -76,39 +72,37 @@ public class OAuthWebClientConfiguration {
     }
 
     @Bean
-    public ClientHttpConnector clientHttpConnector() {
-        return new ReactorClientHttpConnector(HttpClient.create(
-                        ConnectionProvider
-                                .builder("laidback")
-                                .maxLifeTime(Duration.ofMinutes(30))
-                                .maxIdleTime(Duration.ofMinutes(5))
-                                .build())
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 300000)
-                .responseTimeout(Duration.ofMinutes(5))
+    public ClientHttpRequestFactory clientHttpRequestFactory() {
+        JdkClientHttpRequestFactory requestFactory = new JdkClientHttpRequestFactory(
+                HttpClient.newBuilder()
+                        .connectTimeout(Duration.ofMinutes(5))
+                        .build()
         );
+        requestFactory.setReadTimeout(Duration.ofMinutes(5));
+        return requestFactory;
     }
 
     @Bean
-    public WebClient webClient(WebClient.Builder builder, Optional<OAuth2AuthorizedClientManager> authorizedClientManager, ClientHttpConnector clientHttpConnector) {
-        ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(-1))
-                .build();
-
+    public RestClient restClient(
+            RestClient.Builder builder,
+            Optional<OAuth2AuthorizedClientManager> authorizedClientManager,
+            ClientHttpRequestFactory clientHttpRequestFactory,
+            Authentication dummyAuthentication
+    ) {
         authorizedClientManager.ifPresent(presentAuthorizedClientManager -> {
-            ServletOAuth2AuthorizedClientExchangeFilterFunction authorizedClientExchangeFilterFunction =
-                    new ServletOAuth2AuthorizedClientExchangeFilterFunction(presentAuthorizedClientManager);
-            authorizedClientExchangeFilterFunction.setDefaultClientRegistrationId(registrationId);
-            builder.filter(authorizedClientExchangeFilterFunction);
+            OAuth2ClientHttpRequestInterceptor oauth2ClientHttpRequestInterceptor =
+                    new OAuth2ClientHttpRequestInterceptor(presentAuthorizedClientManager);
+            oauth2ClientHttpRequestInterceptor.setClientRegistrationIdResolver(request -> registrationId);
+            oauth2ClientHttpRequestInterceptor.setPrincipalResolver(request -> dummyAuthentication);
+            builder.requestInterceptor(oauth2ClientHttpRequestInterceptor);
         });
 
-        log.info("oAuth webclient created");
+        log.info("oAuth restclient created");
 
         return builder
-                .clientConnector(clientHttpConnector)
-                .exchangeStrategies(exchangeStrategies)
+                .requestFactory(clientHttpRequestFactory)
                 .baseUrl(baseUrl)
                 .build();
     }
 
 }
-

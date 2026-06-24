@@ -2,17 +2,20 @@ package no.fintlabs.resources.entity;
 
 import lombok.extern.slf4j.Slf4j;
 import no.fintlabs.FintClient;
-import no.fintlabs.kafka.entity.EntityProducer;
-import no.fintlabs.kafka.entity.EntityProducerFactory;
-import no.fintlabs.kafka.entity.EntityProducerRecord;
-import no.fintlabs.kafka.entity.topic.EntityTopicService;
+import no.novari.kafka.producing.ParameterizedProducerRecord;
+import no.novari.kafka.producing.ParameterizedTemplate;
+import no.novari.kafka.producing.ParameterizedTemplateFactory;
+import no.novari.kafka.topic.EntityTopicService;
+import no.novari.kafka.topic.configuration.EntityCleanupFrequency;
+import no.novari.kafka.topic.configuration.EntityTopicConfiguration;
 import no.fintlabs.resources.entity.properties.EntityConfiguration;
 import no.fintlabs.resources.entity.properties.EntityPipelineConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClientException;
+import org.springframework.web.client.RestClientException;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -24,26 +27,35 @@ import java.util.stream.Collectors;
 @ConditionalOnProperty("fint.resource-gateway.resources.entity.enabled")
 public class EntityPublishingComponent {
 
-    private final EntityTopicService entityTopicService;
-    private final EntityProducer<Object> entityProducer;
+    private final ParameterizedTemplate<Object> parameterizedTemplate;
     private final FintClient fintClient;
     private final List<EntityPipeline> entityPipelines;
 
     public EntityPublishingComponent(
             EntityTopicService entityTopicService,
+            ParameterizedTemplateFactory parameterizedTemplateFactory,
             EntityConfiguration entityConfiguration,
             EntityPipelineFactory entityPipelineFactory,
-            EntityProducerFactory entityProducerFactory,
             FintClient fintClient
     ) {
-        this.entityTopicService = entityTopicService;
-        this.entityProducer = entityProducerFactory.createProducer(Object.class);
+        this.parameterizedTemplate = parameterizedTemplateFactory.createTemplate(Object.class);
         this.fintClient = fintClient;
-        this.entityPipelines = this.createEntityPipelines(
-                entityPipelineFactory,
-                entityConfiguration.getEntityPipelines()
-        );
-        this.ensureTopics(entityPipelines, entityConfiguration.getRefresh().getTopicRetentionTimeMs());
+        this.entityPipelines = this.createEntityPipelines
+                (
+                        entityPipelineFactory,
+                        entityConfiguration.getEntityPipelines()
+                );
+
+        entityPipelines.forEach(entityPipeline -> {
+            entityTopicService.createOrModifyTopic(entityPipeline.getTopicNameParameters(), EntityTopicConfiguration
+                    .stepBuilder()
+                    .partitions(1)
+                    .lastValueRetainedForever()
+                    .nullValueRetentionTime(Duration.ofDays(7))
+                    .cleanupFrequency(EntityCleanupFrequency.NORMAL)
+                    .build()
+            );
+        });
     }
 
     private List<EntityPipeline> createEntityPipelines(
@@ -52,13 +64,6 @@ public class EntityPublishingComponent {
         return configs.stream()
                 .map(entityPipelineFactory::create)
                 .collect(Collectors.toList());
-    }
-
-    private void ensureTopics(List<EntityPipeline> entityPipelines, long topicRetentionTime) {
-        entityPipelines.forEach(entityPipeline -> this.entityTopicService.ensureTopic(
-                entityPipeline.getTopicNameParameters(),
-                topicRetentionTime
-        ));
     }
 
     @Scheduled(fixedRateString = "#{entityConfiguration.refresh.intervalMs}")
@@ -80,24 +85,24 @@ public class EntityPublishingComponent {
         List<HashMap<String, Object>> resources = getUpdatedResources(entityPipeline.getFintEndpoint());
         for (HashMap<String, Object> resource : resources) {
             String key = getKey(resource, entityPipeline.getSelfLinkKeyFilter());
-            entityProducer.send(
-                    EntityProducerRecord.builder()
+            parameterizedTemplate.send(
+                    ParameterizedProducerRecord.builder()
                             .topicNameParameters(entityPipeline.getTopicNameParameters())
                             .key(key)
                             .value(resource)
                             .build()
             );
         }
-        log.info(resources.size() + " entities sent to " + entityPipeline.getTopicNameParameters());
+        log.info(resources.size() + " entities sent to " + entityPipeline.getTopicNameParameters().getResourceName());
     }
 
     private List<HashMap<String, Object>> getUpdatedResources(String endpointUrl) {
         try {
-            return Objects.requireNonNull(fintClient.getResourcesLastUpdated(endpointUrl).block())
+            return Objects.requireNonNull(fintClient.getResourcesLastUpdated(endpointUrl))
                     .stream()
                     .map(r -> ((HashMap<String, Object>) r))
                     .collect(Collectors.toList());
-        } catch (WebClientException e) {
+        } catch (RestClientException e) {
             log.error("Could not pull entities from endpoint=" + endpointUrl, e);
             return Collections.emptyList();
         }
@@ -113,7 +118,8 @@ public class EntityPublishingComponent {
                 .map(k -> k.replaceFirst("^https:/\\/.+\\.felleskomponent.no", ""))
                 .filter(o -> o.toLowerCase().contains(selfLinkKeyFilter))
                 .min(String::compareTo)
-                .orElseThrow(() -> new IllegalStateException(String.format("No %s to generate key for resource=%s", selfLinkKeyFilter, resource)));
+                .orElseThrow(() -> new IllegalStateException(String.format("No %s to generate key for resource=%s",
+                        selfLinkKeyFilter, resource)));
     }
 
 }

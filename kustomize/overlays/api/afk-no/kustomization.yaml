@@ -46,6 +46,9 @@ patches:
         path: "/spec/env/3/value"
         value: "afk-no-fint-kontroll-resource-gateway"
       - op: replace
+        path: "/spec/env/4/value"
+        value: "afk-no"
+      - op: replace
         path: "/spec/kafka/acls/0/topic"
         value: "afk-no.kontroll.*"
       - op: replace
