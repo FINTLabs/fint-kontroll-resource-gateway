@@ -80,6 +80,10 @@ spec:
       value: ressurs.kodeverk.plattform
     - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_15_SELF_LINK_KEY_FILTER
       value: systemid
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_16_RESOURCE_REFERENCE
+      value: ressurs.kodeverk.enhetstype
+    - name: FINT_RESOURCE_GATEWAY_RESOURCES_ENTITY_ENTITY_PIPELINES_16_SELF_LINK_KEY_FILTER
+      value: systemid
 
 
 
