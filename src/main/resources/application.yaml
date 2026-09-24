@@ -32,6 +32,18 @@ fint:
             self-link-key-filter: systemid
           - resource-reference: utdanning.timeplan.undervisningsgruppemedlemskap
             self-link-key-filter: systemid
+          - resource-reference: ressurs.kodeverk.plattform
+            self-link-key-filter: systemid
+          - resource-reference: ressurs.kodeverk.status
+            self-link-key-filter: systemid
+          - resource-reference: ressurs.kodeverk.enhetstype
+            self-link-key-filter: systemid
+          - resource-reference: ressurs.datautstyr.digitalenhet
+            self-link-key-filter: systemid
+          - resource-reference: ressurs.datautstyr.enhetsgruppe
+            self-link-key-filter: systemid
+          - resource-reference: ressurs.datautstyr.enhetsgruppemedlemskap
+            self-link-key-filter: systemid
 
     authorization: disabled #enabled
 logging:
