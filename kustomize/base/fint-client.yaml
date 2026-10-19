@@ -13,3 +13,5 @@ spec:
     - personvern_kodeverk
     - administrasjon_personal
     - administrasjon_organisasjon
+    - ressurs_kodeverk
+    - ressurs_datautstyr
